@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface DependencyProvider {
+public @interface DependencyWith {
 	String key();
 }
