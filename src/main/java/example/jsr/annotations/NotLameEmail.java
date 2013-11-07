@@ -25,7 +25,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = {})
-//TODO: Multiple Validators
 @NotEmpty
 @Pattern(regexp="((?!geocities.com).)*")
 @Email
