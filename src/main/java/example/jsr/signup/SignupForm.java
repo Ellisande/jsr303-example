@@ -9,7 +9,6 @@ import example.jsr.account.Account;
 import example.jsr.annotations.Anagram;
 import example.jsr.annotations.DependencyProvider;
 import example.jsr.annotations.DependsOn;
-import example.jsr.annotations.DependsOn.DependencyRules;
 import example.jsr.annotations.NotLameEmail;
 import example.jsr.annotations.PasswordAndEmailDoNotMatch;
 import example.jsr.annotations.ValidateDependencies;
@@ -28,7 +27,7 @@ public class SignupForm {
 	private static final String MUST_CONTAIN_SPECIAL = "{password.contain_special}";
 	private static final String MUST_BE_ANAGRAM = "{email.anagram}";
 
-	@DependsOn(key = DEPENDS_ON_PASSWORD_KEY, rule=DependencyRules.REQUIRED_WHEN_PROVIDER_PRESENT)
+	@DependsOn(key = DEPENDS_ON_PASSWORD_KEY)
 	@NotBlank(message = SignupForm.NOT_BLANK_MESSAGE)
 	@NotLameEmail(message = LAME_EMAIL)
 	@Anagram(message = MUST_BE_ANAGRAM, groups = SuperstarAccount.class)
