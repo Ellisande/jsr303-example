@@ -14,7 +14,6 @@ public class AnagramStringValidator extends AnagramValidator<String> {
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		System.out.println(this.getClass().getName() + " hit");
 		return isAnagram(value);
 	}
 
