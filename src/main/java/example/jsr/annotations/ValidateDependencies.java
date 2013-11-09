@@ -11,14 +11,37 @@ import javax.validation.Payload;
 
 import example.jsr.validators.ValidateDependenciesValidator;
 
-@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+/**
+ * Scan through the current class and enforces cross-field dependencies based on
+ * the @{@link DependencyWith} and the @{@link DependentField} annotations.
+ * 
+ * @author m91s
+ * 
+ */
+@Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {ValidateDependenciesValidator.class})
+@Constraint(validatedBy = { ValidateDependenciesValidator.class })
 public @interface ValidateDependencies {
-    String message() default "Your email address is lame";
+	/**
+	 * Message to return if this constraint is violated
+	 * 
+	 * @return
+	 */
+	String message() default "Your email address is lame";
 
-    Class<?>[] groups() default {};
+	/**
+	 * Set of marker classes which represent the validation groups of which this
+	 * validation is a part.
+	 * 
+	 * @return
+	 */
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+	/**
+	 * Optional payload to provide metadata to the validation.
+	 * 
+	 * @return
+	 */
+	Class<? extends Payload>[] payload() default {};
 }

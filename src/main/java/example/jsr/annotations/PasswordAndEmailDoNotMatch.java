@@ -11,16 +11,44 @@ import javax.validation.Payload;
 
 import example.jsr.validators.PasswordAndEmailDoNotMatchValidator;
 
-@Target({ElementType.TYPE})
+/**
+ * Enforces that the password and email address do not match for the SignupForm
+ * bean.
+ * 
+ * @author m91s
+ * 
+ */
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {PasswordAndEmailDoNotMatchValidator.class})
+@Constraint(validatedBy = { PasswordAndEmailDoNotMatchValidator.class })
 public @interface PasswordAndEmailDoNotMatch {
-    String message() default "Your email address is lame";
+	/**
+	 * Message to return if this constraint is violated
+	 * 
+	 * @return
+	 */
+	String message() default "Your email address is lame";
 
-    Class<?>[] groups() default {};
+	/**
+	 * Set of marker classes which represent the validation groups of which this
+	 * validation is a part.
+	 * 
+	 * @return
+	 */
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
-    
-    String path();
+	/**
+	 * Optional payload to provide metadata to the validation.
+	 * 
+	 * @return
+	 */
+	Class<? extends Payload>[] payload() default {};
+
+	/**
+	 * Path to map the resulting error to on the rendered HTML page.
+	 * 
+	 * @return
+	 */
+	String path();
 }

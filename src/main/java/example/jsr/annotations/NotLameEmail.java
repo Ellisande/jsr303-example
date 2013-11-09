@@ -16,32 +16,46 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Target({ElementType.FIELD, ElementType.METHOD})
+/**
+ * Enforces that the current field is not a lame email by ensuring that it ends
+ * in Gmail.com.
+ * 
+ * @author m91s
+ * 
+ */
+@Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = {})
 @NotEmpty
-//TODO: Add contains
+@Pattern(regexp = ".*@gmail.com")
 @Email
 @ReportAsSingleViolation
 public @interface NotLameEmail {
-    String message() default "Your email address is lame";
+	/**
+	 * Message to return if this constraint is violated
+	 * 
+	 * @return
+	 */
+	String message() default "Your email address is lame";
 
-    Class<?>[] groups() default {};
+	/**
+	 * Set of marker classes which represent the validation groups of which this
+	 * validation is a part.
+	 * 
+	 * @return
+	 */
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
-    
-	@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
-	@Retention(RUNTIME)
-	@Documented
-	public @interface List {
-		NotLameEmail[] value();
-	}
-} 
-
-
-
+	/**
+	 * Optional payload to provide metadata to the validation.
+	 * 
+	 * @return
+	 */
+	Class<? extends Payload>[] payload() default {};
+}

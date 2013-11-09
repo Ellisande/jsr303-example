@@ -14,15 +14,44 @@ import org.hibernate.validator.constraints.NotBlank;
 import example.jsr.validators.AnagramIntegerValidator;
 import example.jsr.validators.AnagramStringValidator;
 
-@Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
+/**
+ * Validates that the current field is an anagram (the same forwards and
+ * backwards). White space and capitalization do count.
+ * <p>
+ * Supported Types:
+ * <ul>
+ * <li>String</li>
+ * <li>Integer</li>
+ * </ul>
+ * 
+ * @author m91s
+ * 
+ */
+@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {AnagramStringValidator.class, AnagramIntegerValidator.class})
+@Constraint(validatedBy = { AnagramStringValidator.class, AnagramIntegerValidator.class })
 @NotBlank
 public @interface Anagram {
-    String message() default "Not a ton";
+	/**
+	 * Message to return if this constraint is violated
+	 * 
+	 * @return
+	 */
+	String message() default "Not a ton";
 
-    Class<?>[] groups() default {};
+	/**
+	 * Set of marker classes which represent the validation groups of which this
+	 * validation is a part.
+	 * 
+	 * @return
+	 */
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+	/**
+	 * Optional payload to provide metadata to the validation.
+	 * 
+	 * @return
+	 */
+	Class<? extends Payload>[] payload() default {};
 }
