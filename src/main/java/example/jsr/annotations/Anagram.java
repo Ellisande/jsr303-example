@@ -40,5 +40,8 @@ public @interface Anagram {
     **/
     Class<?>[] groups() default {};
 
+    /**
+    * Any additional payload objects used to denote additional metadata.
+    **/
     Class<? extends Payload>[] payload() default {};
 }
